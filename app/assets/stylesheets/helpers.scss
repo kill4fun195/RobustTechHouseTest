@@ -1,0 +1,251 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+.full-width {
+  width: 100%;
+}
+
+.display-block {
+  display: block !important;
+  margin-top: -300px !important;
+}
+
+.highlight-on-load {
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    background: rgba(252, 228, 191, .6);
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    left: 0;
+    top: 0;
+    display: block;
+    transition: all 2s ease-out;
+  }
+
+  &.loading {
+    &:after {
+      background: transparent;
+    }
+  }
+}
+
+.dot-separator {
+  margin-left: 5px;
+
+  &:before {
+    margin-right: 5px;
+    content: " \B7 ";
+  }
+}
+
+
+
+.clearfix {
+  clear: both;
+}
+
+.hide-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.show-mobile {
+  display: none;
+}
+
+.mobile {
+  .show-mobile {
+    display: block;
+  }
+}
+/**
+ * Hide text while making it readable for screen readers
+ * 1. Needed in WebKit-based browsers because of an implementation bug;
+ *    See: https://code.google.com/p/chromium/issues/detail?id=457146
+ */
+.hide-text {
+  overflow: hidden;
+  padding: 0; /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+/**
+ * Hide element while making it readable for screen readers
+ * Shamelessly borrowed from HTML5Boilerplate:
+ * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+ */
+
+
+
+
+.has-max-width {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.size-16{font-size: 16px;}
+.size-18{font-size: 18px;}
+.size-20{font-size: 20px;}
+.margin-auto{margin: auto !important;}
+.margin-0{margin: 0px !important;}
+.margin-5{margin: 5px !important;}
+.margin-10{margin: 10px !important;}
+.margin-15{margin: 15px !important;}
+.margin-20{margin: 20px !important;}
+.margin-top-0{ margin-top:0px !important; }
+.margin-top-5{ margin-top:5px !important; }
+.margin-top-10{ margin-top:10px !important; }
+.margin-top-15{ margin-top:15px !important; }
+.margin-top-20{ margin-top:20px !important; }
+.margin-left-0{ margin-left:0px !important; }
+.margin-left-5{ margin-left:5px !important; }
+.margin-left-10{ margin-left:10px !important; }
+.margin-left-15{ margin-left:15px !important; }
+.margin-left-20{ margin-left:20px !important; }
+.margin-right-0{ margin-right:0px !important; }
+.margin-right-5{ margin-right:5px !important; }
+.margin-right-10{ margin-right:10px !important; }
+.margin-right-15{ margin-right:15px !important; }
+.margin-right-20{ margin-right:20px !important; }
+.margin-bottom-0{ margin-bottom:0px !important; }
+.margin-bottom-5{ margin-bottom:5px !important; }
+.margin-bottom-10{ margin-bottom:10px !important; }
+.margin-bottom-15{ margin-bottom:15px !important; }
+.margin-bottom-20{ margin-bottom:20px !important; }
+.padding-0{padding: 0px !important;}
+.padding-5{padding: 5px !important;}
+.padding-10{padding: 10px !important;}
+.padding-15{padding: 15px !important;}
+.padding-20{padding: 20px !important;}
+.padding-top-0{ padding-top:0px !important; }
+.padding-top-5{ padding-top:5px !important; }
+.padding-top-10{ padding-top:10px !important; }
+.padding-top-15{ padding-top:15px !important; }
+.padding-top-20{ padding-top:20px !important; }
+.padding-left-0{ padding-left:0px !important; }
+.padding-left-5{ padding-left:5px !important; }
+.padding-left-10{ padding-left:10px !important; }
+.padding-left-15{ padding-left:15px !important; }
+.padding-left-20{ padding-left:20px !important; }
+.padding-right-0{ padding-right:0px !important; }
+.padding-right-5{ padding-right:5px !important; }
+.padding-right-10{ padding-right:10px !important; }
+.padding-right-15{ padding-right:15px !important; }
+.padding-right-20{ padding-right:20px !important; }
+.padding-bottom-0{ padding-bottom:0px !important; }
+.padding-bottom-5{ padding-bottom:5px !important; }
+.padding-bottom-10{ padding-bottom:10px !important; }
+.padding-bottom-15{ padding-bottom:15px !important; }
+.padding-bottom-20{ padding-bottom:20px !important; }
+.block{ display: block !important;}
+.bold{ font-weight: bold !important;}
+.italic{ font-style: italic; }
+.text-overflow-ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.underline {
+  text-decoration: underline;
+}
+.text-center{ text-align: center; }
+.text-left{ text-align: left; }
+.text-right{ text-align: right; }
+.text-justify{ text-align: justify;}
+.orange-text{ color: orange !important}
+.green-text{ color: #21BA45 !important}
+.red-text{ color: #DB2828 !important}
+.blue-text{ color: #2185d0 !important}
+.black-text{color: black !important}
+.grey-text{ color: #777 !important}
+.yellow-text{ color: yellow !important}
+.white-text{ color: white !important}
+.disabled-text{ color: rgba(0,0,0,.5) !important }
+.background-white{ background: white;}
+.border-thin{
+  border: 1px solid #e8eaed;
+  border-radius: 3px;
+}
+.border-bold{
+  border: 2px solid #e8eaed;
+  border-radius: 3px;
+}
+.border-bottom-bold{ border-bottom: 3px solid #e8eaed;}
+.border-bottom-thin{ border-bottom: 1px solid #e8eaed;}
+.border-top-bold{ border-top: 2px solid #e8eaed;}
+.border-top-thin{ border-top: 1px solid #e8eaed;}
+.border-right-bold{ border-right: 2px solid #e8eaed;}
+.border-right-thin{ border-right: 1px solid #e8eaed;}
+.border-left-bold{ border-left: 2px solid #e8eaed;}
+.border-left-thin{ border-left: 1px solid #e8eaed;}
+.height-200{height: 200px;}
+.height-250{height: 250px;}
+.height-300{height: 300px;}
+.height-350{height: 350px;}
+.height-400{height: 400px;}
+.inline {
+  display: inline;
+}
+.icon.inline {
+  display: inline !important;
+}
+.show {
+  display: block !important;
+}
+.hidden {
+  display: none !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.small {
+  font-size: 85%;
+}
+.overflow-hidden{ overflow: hidden;}
+// Classes
+.float-left {
+  float: left !important;
+}
+.float-right {
+  float: right !important;
+}
+
+.media {
+  .media-aside {
+    line-height: 0;
+  }
+
+  &.left {
+    .media-aside {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
+  &.right {
+    .media-aside {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+
+  .media-body:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+.img-bordered{
+  border: 1px solid #eee;
+}
+
