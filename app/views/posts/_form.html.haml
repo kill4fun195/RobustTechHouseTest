@@ -1,4 +1,4 @@
-= form_for @post, :html => { class: "form-signin"} do |f|
+= form_for @post, :html => { class: "form-signin custom-form-post"} do |f|
   - if @post.errors.any?
     #error_explanation
       %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
@@ -8,9 +8,15 @@
 
   .field
     = f.label :title
-    = f.text_field :title, class: "form-control"
+    = f.text_field :title, class: "form-control", placeholder: "Title"
   .field
     = f.label :content
-    = f.text_area :content, class: "form-control"
+    = f.text_area :content, class: "form-control", placeholder: "Description"
+  - if @post.avatar.try(:image).present?
+    .image
+      = image_tag @post.avatar_url
+  .field
+    = f.label :image
+    = f.file_field :avatar
   .actions
     = f.submit 'Save', class: "btn btn-primary"

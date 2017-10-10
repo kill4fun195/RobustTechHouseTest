@@ -15,3 +15,9 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).on("turbolinks:load", function() {
+  $(".show-form-update-avatar").on("click", function(){
+    $(".form-update-avatar").toggle();
+  });
+});

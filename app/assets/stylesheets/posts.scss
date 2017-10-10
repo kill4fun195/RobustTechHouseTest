@@ -3,3 +3,21 @@
     color: white !important;
   }
 }
+.comment-show-article{
+  .top-comment-show-article{
+    border-bottom:2px solid #9ea3aa;
+    li a{
+      color:#33363B;
+      font-size:18px;
+    }
+    .active{
+      border-bottom:3px solid #D2691E;
+      a{
+        color:#D2691E;
+      }
+    }
+  }
+}
+.custom-form-post{
+  max-width: 800px !important;
+}

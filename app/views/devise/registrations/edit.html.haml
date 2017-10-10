@@ -1,0 +1,29 @@
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put , class: "form-signin"}) do |f|
+  %h2.form-signin-heading
+    Edit #{resource_name.to_s.humanize}
+  = devise_error_messages!
+  .field
+    = f.label :email
+    = f.email_field :email, autofocus: true, class: "form-control"
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .field
+    = f.label :password
+    %i (leave blank if you don't want to change it)
+    = f.password_field :password, autocomplete: "off", class: "form-control"
+    - if @minimum_password_length
+
+      %em
+        = @minimum_password_length
+        characters minimum
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+  .field
+    = f.label :current_password
+    %i (we need your current password to confirm your changes)
+    = f.password_field :current_password, autocomplete: "off", class: "form-control"
+  .actions
+    = f.submit "Update", class: "btn btn-primary"

@@ -1,0 +1,41 @@
+.details-user-info
+  .row.user-content
+    .col-sm-12.content-left
+      .user-info
+        .well
+          .avatar
+            .user-image
+              = image_tag(@user.avatar_url)
+            .name 
+              = @user.email
+            .star-date 
+              Created_at: 
+              = @user.created_at
+          .clear-fix  
+          .status
+            %div
+              Total posts: 
+              %span.number 
+                = @user.posts.size
+            %div
+              Total comments: 
+              %span.number 
+                = @user.comments.size
+            .update-info.margin-top-10
+              %a.btn.btn-warning{href: edit_user_registration_path}
+                Update Info
+              %a.btn.btn-warning.show-form-update-avatar
+                Update Avatar
+          .form-update-avatar.border-top-thin.margin-top-20.padding-10
+            = form_for @user , url: user_path(@user) do |f|
+              .form-group
+                = f.label "Email"
+                = f.text_field :email, class: "form-control", disabled: "disabled"
+                = f.label "Avatar bạn nên chọn ảnh chiều rộng và chiều cao bằng nhau để hiện thị chính xác hơn.", class: "notice-for-avatar"
+                = f.file_field :avatar
+              %button.btn.btn-primary{:type => "submit"}  
+                Update
+
+
+              
+            

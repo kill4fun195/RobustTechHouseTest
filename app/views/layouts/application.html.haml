@@ -21,8 +21,11 @@
         .navbar-collapse.collapse
           - if current_user
             .current-user-present.float-right
-              %a.navbar-brand.blue-text
-                = current_user.email.truncate(15)
+              %a.navbar-brand.blue-text{href: user_path(current_user.id)}
+                %span
+                  = image_tag(current_user.avatar_url, class: "has-max-width")
+                %span.user-name
+                  = current_user.email.truncate(15)
               %a{:href => destroy_user_session_path, "data-method" => "delete"}
                 %button.btn.margin-top-10
                   Sign out

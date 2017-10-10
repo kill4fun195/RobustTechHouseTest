@@ -1,33 +1,67 @@
-
-%p
-  %b Title:
-  = @post.title
-%p
-  %b Content:
-  = @post.content
-
+.post-info
+  %h2.post-title
+    = @post.title
+  %ul.list-inline
+    %li
+      %i.fa.fa-clock-o.fa-fw
+      = @post.created_at.strftime("%m/%d/%y")
+    \.
+    - if(@post.comments.count == 0)
+      %li
+        %i.fa.fa-comments-o.fa-fw
+        %a NO RESPONSES
+      \.
+    - else
+      %li
+        %a
+          %i.fa.fa-comments-o.fa-fw
+          = @post.comments.count
+          RESPONES
+      \.
+    %li
+      %i.fa.fa-user
+      = @post.user.email
+  .content-show-article.row
+    .col-sm-3
+      = image_tag @post.avatar_url, class: "has-max-width"
+    .col-sm-9
+      = sanitize @post.content
+%br
+.clearfix.margin-top-20
 .list-comments
-  .form-comment
+  .comment-show-article
+    %ul.list-inline.top-comment-show-article
+      %li.active.padding-10
+        %a{:href => "#"}
+          %i.fa.fa-comments-o
+          Comments
+          %span.badge
+            = @comments.count
+  .form-comment.margin-top-20
     .media
       .media-left
         %a.block.width-50
-          %img.media-object.has-max-width{ :src => "/images/default_user.jpg"}/
+          %img.media-object.has-max-width{ :src => @post.user.avatar_url}/
       .media-body
         = form_for Comment.new do |f|
           = f.hidden_field :post_id, value: @post.id
           .field.form-group
             = f.text_area :content, rows: 4, cols: 50, class: "form-control"
           .actions
-            = f.submit 'Comment'
+            = f.submit 'Comment', class: "btn btn-primary"
   - @comments.each do |comment|
     - display_name = comment.user.email.truncate(20)
     .media
       .media-left
         %a.block.width-50
-          %img.media-object.has-max-width{:alt => display_name, :src => "/images/default_user.jpg"}/
+          %img.media-object.has-max-width{:alt => display_name, :src => comment.user.avatar_url}/
       .media-body
-        %h5.media-heading 
-          = display_name
+        .media-heading
+          %span.user-name.bold 
+            = display_name
+          %span
+            %i.fa.fa-clock-o
+            = comment.created_at.strftime("%m/%d/%Y at %I:%M%p ")
         .comment-content
           = sanitize(comment.content)
   .pagination
