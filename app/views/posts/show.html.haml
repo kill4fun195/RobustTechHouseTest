@@ -1,4 +1,3 @@
-%p#notice= notice
 
 %p
   %b Title:
@@ -6,7 +5,31 @@
 %p
   %b Content:
   = @post.content
-- if current_user.present?
-  = link_to 'Edit', edit_post_path(@post)
-  \|
-  = link_to 'Back', posts_path
+
+.list-comments
+  .form-comment
+    .media
+      .media-left
+        %a.block.width-50
+          %img.media-object.has-max-width{ :src => "/images/default_user.jpg"}/
+      .media-body
+        = form_for Comment.new do |f|
+          = f.hidden_field :post_id, value: @post.id
+          .field.form-group
+            = f.text_area :content, rows: 4, cols: 50, class: "form-control"
+          .actions
+            = f.submit 'Comment'
+  - @comments.each do |comment|
+    - display_name = comment.user.email.truncate(20)
+    .media
+      .media-left
+        %a.block.width-50
+          %img.media-object.has-max-width{:alt => display_name, :src => "/images/default_user.jpg"}/
+      .media-body
+        %h5.media-heading 
+          = display_name
+        .comment-content
+          = sanitize(comment.content)
+  .pagination
+    = will_paginate @comments, renderer: BootstrapPagination::Rails
+

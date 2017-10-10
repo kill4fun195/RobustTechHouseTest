@@ -7,14 +7,8 @@
   %b Post:
   = @comment.post_id
 %p
-  %b Integer,:
-  = @comment.integer,
-%p
   %b User:
   = @comment.user_id
-%p
-  %b Integer:
-  = @comment.integer
 
 = link_to 'Edit', edit_comment_path(@comment)
 \|

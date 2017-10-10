@@ -1,24 +1,35 @@
 %h3.text-center Listing posts
-
+.add-new-post
+  = link_to 'New Post', new_post_path, class: "btn btn-success"
+%br
 %table.table.table-striped
   %thead
     %tr
       %th Title
       %th Content
+      %th Creator
+      %th Created at
       %th
       %th
       %th
   %tbody
     - @posts.each do |post|
       %tr
-        %td= post.title
-        %td= post.content
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          = post.title
+        %td
+          = sanitize(post.content)
+        %td
+          = post.user.email
+        %td
+          = post.created_at
+        %td
+          = link_to 'Show', post, class: "btn btn-info"
+        %td
+          = link_to 'Edit', edit_post_path(post), class: "btn btn-warning"
+        %td
+          = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
 %br
 .text-center
   = will_paginate @posts, renderer: BootstrapPagination::Rails
-%br
 
-= link_to 'New Post', new_post_path, class: "btn btn-success"

@@ -16,12 +16,12 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"} 
+          %a.navbar-brand{:href => "/"} 
             Test Project 
         .navbar-collapse.collapse
           - if current_user
             .current-user-present.float-right
-              %a.navbar-brand.blue-text{:href => "#"} 
+              %a.navbar-brand.blue-text
                 = current_user.email.truncate(15)
               %a{:href => destroy_user_session_path, "data-method" => "delete"}
                 %button.btn.margin-top-10
