@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all.paginate(page: params[:page], per_page: 15)
+    key_sort = params[:sort].present? ? params[:sort] : "DESC"
+    @posts = Post.sort_by(key_sort).paginate(page: params[:page], per_page: 15)
   end
 
   def show
@@ -25,6 +26,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     respond_to do |format|
       if @post.save
+        if params[:post][:avatar].present?
+          @post.create_avatar(image: params[:post][:avatar])
+        end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else

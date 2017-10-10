@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  
+  include Serializeable
+
+  DEFAULT_SERIALIZER = UserSerializer
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require bootstrap
+//= require readmore.min
 //= require turbolinks
 //= require_tree .
 
@@ -20,4 +21,32 @@ $(document).on("turbolinks:load", function() {
   $(".show-form-update-avatar").on("click", function(){
     $(".form-update-avatar").toggle();
   });
+
+  if($("#sort-created-at").length > 0)
+  {
+    document.getElementById("sort-created-at").onchange = function() {myFunction()
+    };
+    function myFunction() {
+      var value_sort = document.getElementById("sort-created-at").value;
+      setTimeout(function(){ 
+        Turbolinks.visit(window.location.pathname + "?sort="+value_sort);
+      }, 50);
+    };
+  }
+
+  //init readmore, readless
+  window.initReadMoreText = function(){
+    $(".read-more-text").each(function(index, elem) {
+      var speed = parseInt($(elem).attr("data-speed")) || 500
+      var height = parseInt($(elem).attr("data-height")) || 40
+      $(elem).readmore({
+        speed: speed,
+        moreLink: "<a href='#'>Read more</a>",
+        lessLink: "<a href='#'>Read less</a>",
+        collapsedHeight: height
+      });
+    }
+  )}
+  window.initReadMoreText();
+  
 });

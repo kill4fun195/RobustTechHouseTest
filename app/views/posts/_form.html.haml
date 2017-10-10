@@ -14,7 +14,7 @@
     = f.text_area :content, class: "form-control", placeholder: "Description"
   - if @post.avatar.try(:image).present?
     .image
-      = image_tag @post.avatar_url
+      = image_tag @post.image_url
   .field
     = f.label :image
     = f.file_field :avatar

@@ -23,7 +23,7 @@
       = @post.user.email
   .content-show-article.row
     .col-sm-3
-      = image_tag @post.avatar_url, class: "has-max-width"
+      = image_tag @post.image_url, class: "has-max-width"
     .col-sm-9
       = sanitize @post.content
 %br
