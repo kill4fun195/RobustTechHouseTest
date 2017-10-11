@@ -1,69 +1,94 @@
-.post-info
-  %h2.post-title
-    = @post.title
-  %ul.list-inline
-    %li
-      %i.fa.fa-clock-o.fa-fw
-      = @post.created_at.strftime("%m/%d/%y")
-    \.
-    - if(@post.comments.count == 0)
+#post-show.row
+  .post-info.col-sm-8
+    %h2.post-title
+      = @post.title
+    %ul.list-inline
       %li
-        %i.fa.fa-comments-o.fa-fw
-        %a NO RESPONSES
-      \.
-    - else
-      %li
-        %a
+        %i.fa.fa-clock-o.fa-fw
+        %time.timeago{:datetime => "#{@post.created_at.localtime}"} 
+          = @post.created_at.localtime
+      %li.dot-separator 
+        %i.fa.fa-eye
+        = @post.view_count
+      - if(@post.comments.count == 0)
+        %li.dot-separator
           %i.fa.fa-comments-o.fa-fw
-          = @post.comments.count
-          RESPONES
-      \.
-    %li
-      %i.fa.fa-user
-      = @post.user.email
-  .content-show-article.row
-    .col-sm-3
-      = image_tag @post.image_url, class: "has-max-width"
-    .col-sm-9
-      = sanitize @post.content
-%br
-.clearfix.margin-top-20
-.list-comments
-  .comment-show-article
-    %ul.list-inline.top-comment-show-article
-      %li.active.padding-10
-        %a{:href => "#"}
-          %i.fa.fa-comments-o
-          Comments
-          %span.badge
-            = @comments.count
-  .form-comment.margin-top-20
-    .media
-      .media-left
-        %a.block.width-50
-          %img.media-object.has-max-width{ :src => @post.user.avatar_url}/
-      .media-body
-        = form_for Comment.new do |f|
-          = f.hidden_field :post_id, value: @post.id
-          .field.form-group
-            = f.text_area :content, rows: 4, cols: 50, class: "form-control"
-          .actions
-            = f.submit 'Comment', class: "btn btn-primary"
-  - @comments.each do |comment|
-    - display_name = comment.user.email.truncate(20)
-    .media
-      .media-left
-        %a.block.width-50
-          %img.media-object.has-max-width{:alt => display_name, :src => comment.user.avatar_url}/
-      .media-body
-        .media-heading
-          %span.user-name.bold 
-            = display_name
-          %span
-            %i.fa.fa-clock-o
-            = comment.created_at.strftime("%m/%d/%Y at %I:%M%p ")
-        .comment-content
-          = sanitize(comment.content)
-  .pagination
-    = will_paginate @comments, renderer: BootstrapPagination::Rails
+          %a NO RESPONSES
+
+      - else
+        %li.dot-separator
+          %a
+            %i.fa.fa-comments-o.fa-fw
+            = @post.comments.count
+            RESPONES
+
+      %li.dot-separator
+        %i.fa.fa-user
+        = @post.user.email
+    .content-show-article.row
+      .col-sm-3
+        = image_tag @post.image_url, class: "has-max-width"
+      .col-sm-9
+        = sanitize @post.content
+    %br
+    .clearfix.margin-top-20
+    .list-comments
+      .comment-show-article
+        %ul.list-inline.top-comment-show-article
+          %li.active.padding-10
+            %a{:href => "#"}
+              %i.fa.fa-comments-o
+              Comments
+              %span.badge
+                = @comments.count
+      .form-comment.margin-top-20
+        .media
+          .media-left
+            %a.block.width-50
+              %img.media-object.has-max-width{ :src => @post.user.avatar_url}/
+          .media-body
+            = form_for Comment.new do |f|
+              = f.hidden_field :post_id, value: @post.id
+              .field.form-group
+                = f.text_area :content, rows: 4, cols: 50, class: "form-control"
+              .actions
+                = f.submit 'Comment', class: "btn btn-primary"
+      - @comments.each do |comment|
+        - display_name = comment.user.email.truncate(20)
+        .media
+          .media-left
+            %a.block.width-50
+              %img.media-object.has-max-width{:alt => display_name, :src => comment.user.avatar_url}/
+          .media-body
+            .media-heading
+              %span.user-name.bold 
+                = display_name
+              %span
+                %i.fa.fa-clock-o
+                = comment.created_at.strftime("%m/%d/%Y at %I:%M%p ")
+            .comment-content
+              = sanitize(comment.content)
+      .pagination
+        = will_paginate @comments, renderer: BootstrapPagination::Rails
+  .col-sm-4.post-sidebar
+    .popular-post.margin-top-20
+      %h2.header.text-center
+        Popular posts 
+      - popular_posts.each do |post|
+        .margin-top-10.border-top-thin.padding-bottom-10
+        .row.content-popular-viewer
+          .col-sm-4.col-xs-4
+            %a{:href => post_path(post), :title => post.title}
+              %img.has-max-width{:alt => post.title, :src => post.image_url}/
+          .col-sm-8.col-xs-8.padding-0
+            %a.post-title.bold.size-16.block{:href => post_path(post)}
+              = post.title
+            %a.author.block{href: user_path(post.user)}
+              %i.fa.fa-user
+              = @post.user.email
+            .post-content.read-more-text{"data-height" => 50}
+              = sanitize(post.content)
+    .text-center.margin-top-10.border-top-thin.padding-bottom-10
+      %a.bold.block.margin-top-10{href: posts_path} 
+        View all
 

@@ -2,6 +2,15 @@
 // This file contains CSS helper classes.
 // -----------------------------------------------------------------------------
 
+.dot-separator {
+  margin-left: 5px;
+
+  &:before {
+    margin-right: 5px;
+    content: " \B7 ";
+  }
+}
+
 .full-width {
   width: 100%;
 }
@@ -33,16 +42,6 @@
     }
   }
 }
-
-.dot-separator {
-  margin-left: 5px;
-
-  &:before {
-    margin-right: 5px;
-    content: " \B7 ";
-  }
-}
-
 
 
 .clearfix {
@@ -181,9 +180,9 @@
   border-radius: 3px;
 }
 .border-bottom-bold{ border-bottom: 3px solid #e8eaed;}
-.border-bottom-thin{ border-bottom: 1px solid #e8eaed;}
+.border-bottom-thin{ border-bottom: 1px solid #aeb1b7;}
 .border-top-bold{ border-top: 2px solid #e8eaed;}
-.border-top-thin{ border-top: 1px solid #e8eaed;}
+.border-top-thin{ border-top: 1px solid #aeb1b7;}
 .border-right-bold{ border-right: 2px solid #e8eaed;}
 .border-right-thin{ border-right: 1px solid #e8eaed;}
 .border-left-bold{ border-left: 2px solid #e8eaed;}

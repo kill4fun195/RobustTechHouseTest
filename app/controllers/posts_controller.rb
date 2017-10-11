@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @comments = @post.comments.paginate(page: params[:page], per_page: 15)
+    @post.update(view_count: @post.view_count + 1)
   end
 
 

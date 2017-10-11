@@ -1,6 +1,13 @@
 body{
   background: #eee;
 }
+a:hover{
+  text-decoration: none;
+}
+time{
+  font-style: italic;
+  color: grey;
+}
 .jumbotron{
   min-height: 600px;
 }

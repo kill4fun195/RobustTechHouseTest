@@ -14,6 +14,7 @@
 //= require jquery
 //= require bootstrap
 //= require readmore.min
+//= require jquery.timeago
 //= require turbolinks
 //= require_tree .
 
@@ -48,5 +49,7 @@ $(document).on("turbolinks:load", function() {
     }
   )}
   window.initReadMoreText();
+
+  $("time.timeago").timeago();
   
 });

@@ -24,8 +24,52 @@
 
 
 .list-posts{
-  
+  i{
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+    &.fa-clock-o{
+      width: 12px ;
+    }
+  }
+  .post-image{
+    display: block;
+    background: #d4d7db;
+    img{
+      height: 350px;
+    }
+  }
+  .caption{
+    min-height: 180px;
+    .post-title{
+      text-decoration: none;
+      color: black;
+      font-size: 22px;
+      font-weight: bold;
+      display: block;
+      transition: color  0.2s linear 0s;
+    }
+  }
+  .post-title:hover {
+    color: #BA0069;
+  }
 }
+
+#post-show{
+  .post-info{
+    background: white;
+  }
+  .post-sidebar{
+    .post-title{
+      color: black;
+      transition: color  0.2s linear 0s;
+    }
+    .post-title:hover {
+      color: #BA0069;
+    }
+  }
+}
+
 
 
 

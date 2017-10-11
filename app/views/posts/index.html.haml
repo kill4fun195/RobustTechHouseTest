@@ -8,39 +8,71 @@
     %option{value: "DESC", selected: params[:sort] == "DESC"} DESC
     %option{value: "ASC", selected: params[:sort] == "ASC"} ASC
 %br
-%table.table.table-striped
-  %thead
-    %tr
-      %th Image
-      %th Title
-      %th Content
-      %th Creator
-      %th Created at
-      %th
-      %th
-      %th
-  %tbody
-    - @posts.each do |post|
-      %tr
-        %td
-          = image_tag post.image_url, class: "width-100"
-        %td
-          = post.title
-        %td
-          .read-more-text{"data-height" => 110}
+/ %table.table.table-striped
+/   %thead
+/     %tr
+/       %th Image
+/       %th Title
+/       %th Content
+/       %th Creator
+/       %th Created at
+/       %th
+/       %th
+/       %th
+/   %tbody
+/     - @posts.each do |post|
+/       %tr
+/         %td
+/           = image_tag post.image_url, class: "width-100"
+/         %td
+/           = post.title
+/         %td
+/           .read-more-text{"data-height" => 110}
+/             = sanitize(post.content)
+/         %td
+/           = post.user.email
+/         %td
+/           = post.created_at
+/         %td
+/           = link_to 'Show', post, class: "btn btn-info"
+/         %td
+/           - if post.user_id == current_user.try(:id)
+/             = link_to 'Edit', edit_post_path(post), class: "btn btn-warning"
+/         %td
+/           - if post.user_id == current_user.try(:id)
+/             = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+
+
+
+.row.list-posts
+  - @posts.each do |post|
+    .col-sm-6.col-md-4
+      .thumbnail
+        %a.post-image{href: post_path(post), title: post.title}
+          %img{:alt => "...", :src => post.image_url}/
+        .caption
+          %a.post-title.hide-text-overflow{href: post_path(post), title: post.title}
+            = post.title
+          .wraper-info.overflow-hidden
+            .created_at.float-left
+              %i.fa.fa-clock-o.fa-fw
+              %time.timeago{:datetime => "#{post.created_at.localtime}"} 
+                = post.created_at.localtime
+            .relation-info.float-right
+              %span.view-count
+                %i.fa.fa-eye
+                = post.view_count
+              %span.comment-count.dot-separator
+                %i.fa.fa-comments-o.fa-fw
+                = post.comments.count
+          %p.read-more-text{"data-height" => 110}
             = sanitize(post.content)
-        %td
-          = post.user.email
-        %td
-          = post.created_at
-        %td
-          = link_to 'Show', post, class: "btn btn-info"
-        %td
-          - if post.user_id == current_user.try(:id)
-            = link_to 'Edit', edit_post_path(post), class: "btn btn-warning"
-        %td
-          - if post.user_id == current_user.try(:id)
-            = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+        .border-top-thin
+          .author
+            %i.fa.fa-user
+            %a{href: user_path(post.user), title: post.user.email}
+              = post.user.email.truncate(40)
+          
 %br
 .text-center
   = will_paginate @posts, renderer: BootstrapPagination::Rails
