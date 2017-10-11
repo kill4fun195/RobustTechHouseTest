@@ -65,7 +65,8 @@
                 = display_name
               %span
                 %i.fa.fa-clock-o
-                = comment.created_at.strftime("%m/%d/%Y at %I:%M%p ")
+                %time.timeago{:datetime => "#{@post.created_at.localtime}"} 
+                  = comment.created_at.localtime
             .comment-content
               = sanitize(comment.content)
       .pagination
@@ -81,9 +82,9 @@
             %a{:href => post_path(post), :title => post.title}
               %img.has-max-width{:alt => post.title, :src => post.image_url}/
           .col-sm-8.col-xs-8.padding-0
-            %a.post-title.bold.size-16.block{:href => post_path(post)}
+            %a.post-title.bold.size-16.block.hide-text-overflow{:href => post_path(post), title: post.title}
               = post.title
-            %a.author.block{href: user_path(post.user)}
+            %a.author.block.hide-text-overflow{href: user_path(post.user), title: @post.user.email}
               %i.fa.fa-user
               = @post.user.email
             .post-content.read-more-text{"data-height" => 50}

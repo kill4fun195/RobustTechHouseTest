@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
 
   def edit
+
   end
 
 
@@ -62,6 +63,12 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def append_posts
+    key_sort = params[:sort].present? ? params[:sort] : "DESC"
+    posts = Post.sort_by(key_sort).paginate(page: params[:page], per_page: 15)
+    render partial: "/posts/list_posts", locals: {posts: posts}, layout: false
   end
 
   private

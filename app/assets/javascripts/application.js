@@ -51,5 +51,30 @@ $(document).on("turbolinks:load", function() {
   window.initReadMoreText();
 
   $("time.timeago").timeago();
+  if($(".js-appender").length > 0 )
+  {
+    var current_url = window.location.href
+    var sort = window.location.href.split("sort=")[1] || "DESC"
+    var page_count = parseInt($("li.active span").text()) + 1;
+    var check_post = true
+    $(window).scroll(function() {
+      if($(window).scrollTop() + window.innerHeight == $(document).height() && check_post) {
+        $(".image-loading").css("display","block");
+        $.ajax({
+          url: "/posts/append_posts/?sort=" + sort.toString() + "&page=" + page_count.toString(),
+          success: function(response){
+            result = $(response);
+            if(result.find(".thumbnail").length == 0){
+              check_post = false;
+            }
+            page_count += 1 ;
+            $(".js-appender").append(result);
+            $(".image-loading").css("display","none");
+          }
+        });
+      }
+    });
+  }
+
   
 });

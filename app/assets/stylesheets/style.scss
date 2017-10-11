@@ -58,7 +58,9 @@ time{
   }
 }
 
-
+#main-content{
+  position: relative;
+}
 #footer
 {
   background:#33363B;
@@ -76,5 +78,17 @@ time{
       margin-top: -6px;
     }
   }
+}
+
+.image-loading{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 280px;
+  margin-top: -200px;
+  margin-left: -140px;
+  z-index: 999;
 }
 

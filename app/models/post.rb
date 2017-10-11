@@ -22,7 +22,7 @@ class Post < ApplicationRecord
 
   def to_search_string(string)
     return string if string.blank?
-    return string.to_s.downcase.gsub(/[àáạảãâầấậẩẫăằắặẳẵ]/, "a")
+    return string.to_s.strip.downcase.gsub(/[àáạảãâầấậẩẫăằắặẳẵ]/, "a")
                .gsub(/[èéẹẻẽêềếệểễ]/, "e")
                .gsub(/[ìíịỉĩ]/, "i")
                .gsub(/[òóọỏõôồốộổỗơờớợởỡ]/, "o")
