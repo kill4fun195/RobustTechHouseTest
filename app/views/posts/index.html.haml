@@ -3,7 +3,8 @@
   = link_to 'New Post', new_post_path, class: "btn btn-success"
 %br
 .form-group.width-150
-  %label Sort created at:
+  %label 
+    Sort created at:
   %select.form-control#sort-created-at
     %option{value: "DESC", selected: params[:sort] == "DESC"} DESC
     %option{value: "ASC", selected: params[:sort] == "ASC"} ASC

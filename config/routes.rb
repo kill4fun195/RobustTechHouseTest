@@ -1,17 +1,23 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  resources :posts do 
+
+  resources :posts, only: [:new, :index, :show, :create] do 
     collection do
       get :append_posts
     end
   end 
-  resources :comments
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :comments, only: [:create]
+
+  resources :users, only: [:show, :edit, :update]
+
   namespace :api do
     namespace :v1, path: "v1" do
-       resources :posts
+      resources :posts, only: [:index, :show]
     end
   end
+
   root "posts#index"
+
 end

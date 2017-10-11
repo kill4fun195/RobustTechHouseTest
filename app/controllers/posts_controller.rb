@@ -2,34 +2,30 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user! , only: [:show, :index, :append_posts]
 
-
   def index
-    key_sort = params[:sort].present? ? params[:sort] : "DESC"
-    @posts = Post.sort_by(key_sort).paginate(page: params[:page], per_page: 15)
+    key_sort = params[:sort] || "DESC"
+    @posts = Post.sort_by(key_sort).with_data.paginate(page: params[:page])
   end
 
   def show
-    @comments = @post.comments.paginate(page: params[:page], per_page: 15)
+    @comments = @post.comments.paginate(page: params[:page])
     @post.update(view_count: @post.view_count + 1)
   end
-
 
   def new
     @post = Post.new
   end
 
-
   def edit
-
   end
-
 
   def create
     @post = current_user.posts.new(post_params)
+  
     respond_to do |format|
       if @post.save
         if params[:post][:avatar].present?
-          @post.create_avatar(image: params[:post][:avatar])
+          @post.create_avatar(image: params[:post][:avatar]) 
         end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
@@ -56,7 +52,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   def destroy
     @post.destroy
     respond_to do |format|
@@ -66,9 +61,9 @@ class PostsController < ApplicationController
   end
 
   def append_posts
-    key_sort = params[:sort].present? ? params[:sort] : "DESC"
-    posts = Post.sort_by(key_sort).paginate(page: params[:page], per_page: 15)
-    render partial: "/posts/list_posts", locals: {posts: posts}, layout: false
+    key_sort = params[:sort] || "DESC"
+    posts = Post.sort_by(key_sort).with_data.paginate(page: params[:page])
+    render partial: "/posts/list_posts", locals: { posts: posts }, layout: false
   end
 
   private

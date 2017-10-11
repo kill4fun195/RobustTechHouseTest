@@ -10,7 +10,7 @@
       %li.dot-separator 
         %i.fa.fa-eye
         = @post.view_count
-      - if(@post.comments.count == 0)
+      - if(@post.comments_count == 0)
         %li.dot-separator
           %i.fa.fa-comments-o.fa-fw
           %a NO RESPONSES
@@ -19,7 +19,7 @@
         %li.dot-separator
           %a
             %i.fa.fa-comments-o.fa-fw
-            = @post.comments.count
+            = @post.comments_count
             RESPONES
 
       %li.dot-separator

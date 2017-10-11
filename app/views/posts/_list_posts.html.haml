@@ -17,8 +17,8 @@
               = post.view_count
             %span.comment-count.dot-separator
               %i.fa.fa-comments-o.fa-fw
-              = post.comments.count
-        %p.read-more-text{"data-height" => 110}
+              = post.comments_count
+        %p.margin-top-5.read-more-text{"data-height" => 110}
           = sanitize(post.content)
       .border-top-thin
         .author

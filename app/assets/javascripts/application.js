@@ -55,7 +55,7 @@ $(document).on("turbolinks:load", function() {
   {
     var current_url = window.location.href
     var sort = window.location.href.split("sort=")[1] || "DESC"
-    var page_count = parseInt($("li.active span").text()) + 1;
+    var page_count = parseInt($("li.active span").text()) + 1 || 2;
     var check_post = true
     $(window).scroll(function() {
       if($(window).scrollTop() + window.innerHeight == $(document).height() && check_post) {

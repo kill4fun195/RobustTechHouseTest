@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  self.per_page = 12
 
   include Serializeable
 
@@ -8,12 +9,20 @@ class Post < ApplicationRecord
   belongs_to :user
   has_one :avatar, as: :attachable, class_name: "Attachment", dependent: :destroy
 
+  scope :with_data, -> {
+    includes(:avatar, user: :avatar)
+  }
+
   scope :sort_by, -> (key_sort){
     order(created_at: key_sort)
   }
 
   scope :search_by, ->(keyword){
     where("searchable_text ILIKE ?", "%#{keyword}%")
+  }
+
+  scope :popular, -> {
+    order(view_count: :desc).limit(5)
   }
 
   def image_url
