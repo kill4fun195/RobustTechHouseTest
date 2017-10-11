@@ -2,7 +2,12 @@ module Api::V1
   class PostsController < ApiController
 
     def index
-      success(data: Post.all)
+      if params[:keyword].present?
+        posts = Post.search_by(params[:keyword])
+      else
+        posts = Post.all
+      end
+      success(data: posts)
     end
 
     def show

@@ -40,7 +40,7 @@
     }
   }
   .caption{
-    min-height: 180px;
+    min-height: 195px;
     .post-title{
       text-decoration: none;
       color: black;
@@ -52,6 +52,9 @@
   }
   .post-title:hover {
     color: #BA0069;
+  }
+  .author{
+    padding: 5px 5px 5px 0px;
   }
 }
 

@@ -8,40 +8,6 @@
     %option{value: "DESC", selected: params[:sort] == "DESC"} DESC
     %option{value: "ASC", selected: params[:sort] == "ASC"} ASC
 %br
-/ %table.table.table-striped
-/   %thead
-/     %tr
-/       %th Image
-/       %th Title
-/       %th Content
-/       %th Creator
-/       %th Created at
-/       %th
-/       %th
-/       %th
-/   %tbody
-/     - @posts.each do |post|
-/       %tr
-/         %td
-/           = image_tag post.image_url, class: "width-100"
-/         %td
-/           = post.title
-/         %td
-/           .read-more-text{"data-height" => 110}
-/             = sanitize(post.content)
-/         %td
-/           = post.user.email
-/         %td
-/           = post.created_at
-/         %td
-/           = link_to 'Show', post, class: "btn btn-info"
-/         %td
-/           - if post.user_id == current_user.try(:id)
-/             = link_to 'Edit', edit_post_path(post), class: "btn btn-warning"
-/         %td
-/           - if post.user_id == current_user.try(:id)
-/             = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
-
 
 
 .row.list-posts
