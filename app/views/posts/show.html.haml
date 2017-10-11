@@ -23,8 +23,9 @@
             RESPONES
 
       %li.dot-separator
-        %i.fa.fa-user
-        = @post.user.email
+        %a{href: user_path(@post.user)}
+          %i.fa.fa-user
+          = @post.user.email
     .content-show-article.row
       .col-sm-3
         = image_tag @post.image_url, class: "has-max-width"
@@ -84,9 +85,9 @@
           .col-sm-8.col-xs-8.padding-0
             %a.post-title.bold.size-16.block.hide-text-overflow{:href => post_path(post), title: post.title}
               = post.title
-            %a.author.block.hide-text-overflow{href: user_path(post.user), title: @post.user.email}
+            %a.author.block.hide-text-overflow{href: user_path(post.user), title: post.user.email}
               %i.fa.fa-user
-              = @post.user.email
+              = post.user.email
             .post-content.read-more-text{"data-height" => 50}
               = sanitize(post.content)
     .text-center.margin-top-10.border-top-thin.padding-bottom-10

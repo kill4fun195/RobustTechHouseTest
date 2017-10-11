@@ -81,14 +81,33 @@ time{
 }
 
 .image-loading{
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 280px;
-  margin-top: -200px;
-  margin-left: -140px;
-  z-index: 999;
+  img{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 280px;
+    margin-top: -200px;
+    margin-left: -140px;
+    z-index: 999;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  #main-content{
+    margin-top: 20px;
+  }
+  .post-info{
+    padding-top: 10px;
+  }
+  .image-loading{
+    img{
+      width: 200px;
+      height: 140px;
+      margin-top: -100px;
+      margin-left: -70px;
+    }
+  }
 }
 

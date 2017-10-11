@@ -21,11 +21,12 @@
               Total comments: 
               %span.number 
                 = @user.comments.size
-            .update-info.margin-top-10
-              %a.btn.btn-warning{href: edit_user_registration_path}
-                Update Info
-              %a.btn.btn-warning.show-form-update-avatar
-                Update Avatar
+            - if current_user.id == @user.id
+              .update-info.margin-top-10
+                %a.btn.btn-warning{href: edit_user_registration_path}
+                  Update Info
+                %a.btn.btn-warning.show-form-update-avatar
+                  Update Avatar
           .form-update-avatar.border-top-thin.margin-top-20.padding-10
             = form_for @user , url: user_path(@user) do |f|
               .form-group

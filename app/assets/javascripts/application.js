@@ -59,7 +59,7 @@ $(document).on("turbolinks:load", function() {
     var check_post = true
     $(window).scroll(function() {
       if($(window).scrollTop() + window.innerHeight == $(document).height() && check_post) {
-        $(".image-loading").css("display","block");
+        $(".image-loading img").css("display","block");
         $.ajax({
           url: "/posts/append_posts/?sort=" + sort.toString() + "&page=" + page_count.toString(),
           success: function(response){
@@ -69,7 +69,8 @@ $(document).on("turbolinks:load", function() {
             }
             page_count += 1 ;
             $(".js-appender").append(result);
-            $(".image-loading").css("display","none");
+            window.initReadMoreText();
+            $(".image-loading img").css("display","none");
           }
         });
       }
