@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :posts, only: [:new, :index, :show, :create] do 
+  resources :posts, only: [:new, :index, :show, :create, :edit, :update] do 
     collection do
       get :append_posts
     end
