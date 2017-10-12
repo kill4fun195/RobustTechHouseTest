@@ -2,7 +2,7 @@
   .col-sm-6.col-md-4
     .thumbnail
       %a.post-image{href: post_path(post), title: post.title}
-        %img{:alt => "...", :src => post.image_url}/
+        %img.lazyload{:alt => "...", "data-original" => post.image_url}/
       .caption
         %a.post-title.hide-text-overflow{href: post_path(post), title: post.title}
           = post.title

@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require readmore.min
 //= require jquery.timeago
+//= require jquery.lazyload
 //= require turbolinks
 //= require_tree .
 
@@ -49,6 +50,7 @@ $(document).on("turbolinks:load", function() {
     }
   )}
   window.initReadMoreText();
+  $("img.lazyload").lazyload();
 
   $("time.timeago").timeago();
   if($(".js-appender").length > 0 )
@@ -70,6 +72,7 @@ $(document).on("turbolinks:load", function() {
             page_count += 1 ;
             $(".js-appender").append(result);
             window.initReadMoreText();
+            $("img.lazyload").lazyload();
             $(".image-loading img").css("display","none");
           }
         });
