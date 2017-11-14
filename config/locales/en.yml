@@ -16,18 +16,22 @@
 #
 # This would use the information in config/locales/es.yml.
 #
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  exceptions:
+    invalid_password: "Password is not correct."
+    invalid_parameter: "Invalid parameter."
+    password_not_match: "Password does not match."
+    email_exist: "This email already exists."
+    email_not_exist: "This account does not exist."
+    wechat_exist: "This Wechat already exists."
+    wechat_not_exist: "This Wechat does not exist."
+    merchant_not_exist: "This merchant does not exist."
+    reseller_not_exist: "This reseller does not exist."
+    sale_not_exist: "This sale does not exist."
+    referrer_not_exist: "This referrer does not exist."
+    invalid_introducing_reseller: "The introducing referrer does not exist."
+    invalid_captcha: "Invalid captcha."
+    dividend_exist: "Dividend declaration for the month/year already exists."

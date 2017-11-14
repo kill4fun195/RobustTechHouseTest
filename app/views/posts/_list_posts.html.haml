@@ -9,7 +9,7 @@
         .wraper-info.overflow-hidden
           .created_at.float-left
             %i.fa.fa-clock-o.fa-fw
-            %time.timeago{:datetime => "#{post.created_at.localtime}"} 
+            %time.timeago{:datetime => "#{post.created_at.localtime}"}
               = post.created_at.localtime
           .relation-info.float-right
             %span.view-count
@@ -23,5 +23,5 @@
       .border-top-thin
         .author
           %i.fa.fa-user
-          %a{href: user_path(post.user), title: post.user.email}
+          %a{href: user_path(post.try(:user)), title: post.try(:user).try(:email)}
             = post.user.email.truncate(40)

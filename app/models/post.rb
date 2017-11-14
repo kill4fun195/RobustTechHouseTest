@@ -1,10 +1,6 @@
 class Post < ApplicationRecord
   self.per_page = 12
 
-  include Serializeable
-
-  DEFAULT_SERIALIZER = PostSerializer
-
   has_many :comments, dependent: :destroy
   belongs_to :user
   has_one :avatar, as: :attachable, class_name: "Attachment", dependent: :destroy
@@ -62,11 +58,11 @@ class Post < ApplicationRecord
     # avatar_content_type == "image/png"
     @avatar_remote_url = url_value
   end
-  
+
   private
 
   before_save do
     self.searchable_text = to_search_string(self.title)
   end
-  
+
 end
