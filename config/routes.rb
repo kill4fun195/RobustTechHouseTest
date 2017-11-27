@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users
   mount API => '/'
 
   resources :posts, only: [:new, :index, :show, :create, :edit, :update] do

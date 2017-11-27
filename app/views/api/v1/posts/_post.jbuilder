@@ -1,0 +1,9 @@
+json.id                   post.id
+json.title                post.title
+json.content              post.content
+json.user_id              post.user_id
+json.view_count           post.view_count
+json.searchable_text      post.searchable_text
+json.comments_count       post.comments_count
+json.created_at           post.created_at
+json.updated_at           post.updated_at

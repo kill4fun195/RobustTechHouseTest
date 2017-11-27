@@ -55,6 +55,9 @@ gem "lazyload-rails"
 gem 'grape'
 gem 'grape-jbuilder'
 gem 'hashie-forbidden_attributes'
+gem 'grape_on_rails_routes'
+
+gem 'kaminari'
 
 group :test do
   gem 'database_cleaner'

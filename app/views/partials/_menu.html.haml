@@ -8,18 +8,18 @@
     %a.navbar-brand{:href => "/"}
       Test Project
   .navbar-collapse.collapse
-    / - if current_user
-    /   .current-user-present.float-right
-    /     %a.navbar-brand.blue-text{href: user_path(current_user.id)}
-    /       = image_tag(current_user.avatar_url, class: "has-max-width")
-    /     %a{:href => destroy_user_session_path, "data-method" => "delete"}
-    /       %button.btn.margin-top-10
-    /         Sign out
-    / - else
-    /   .navbar-form.navbar-right
-    /     %a{:href => new_user_session_path}
-    /       .btn.btn-success.margin-right-10
-    /         Sign in
-    /     %a{:href => new_user_registration_path}
-    /       .btn.btn-info
-    /         Sign up
+    - if current_user
+      .current-user-present.float-right
+        %a.navbar-brand.blue-text{href: user_path(current_user.id)}
+          = image_tag(current_user.avatar_url, class: "has-max-width")
+        %a{:href => destroy_user_session_path, "data-method" => "delete"}
+          %button.btn.margin-top-10
+            Sign out
+    - else
+      .navbar-form.navbar-right
+        %a{:href => new_user_session_path}
+          .btn.btn-success.margin-right-10
+            Sign in
+        %a{:href => new_user_registration_path}
+          .btn.btn-info
+            Sign up

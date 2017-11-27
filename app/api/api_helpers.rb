@@ -19,7 +19,7 @@ module ApiHelpers
 
   def current_user
     access_token = params_access_token
-    @current_user ||= (access_token && model_class.find_by_access_token(access_token))
+    @current_user ||= (access_token && User.find_by_access_token(access_token))
     @current_user
   end
 

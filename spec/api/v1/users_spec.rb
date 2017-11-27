@@ -8,7 +8,7 @@ end
 
 RSpec.describe V1::Users do
   context 'Users' do
-    let (:user) {User.last}
+    let (:user) {create(:user)}
 
     context "Sign in" do
       it "valid params" do

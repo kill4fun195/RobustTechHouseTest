@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  include Sortable
   self.per_page = 12
 
   has_many :comments, dependent: :destroy
