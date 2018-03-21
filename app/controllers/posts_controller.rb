@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user! , only: [:show, :index, :append_posts]
+  skip_before_action :authenticate_user! , only: [:show, :index, :append_posts, :widget]
 
   def index
-    key_sort = params[:sort] || "DESC"
-    @posts = Post.sort_by(key_sort).with_data.paginate(page: params[:page])
+    keyword = params[:keyword] || 0
+    @posts = Post.search_by(keyword).with_data.paginate(page: params[:page])
   end
 
   def show
@@ -17,6 +17,9 @@ class PostsController < ApplicationController
   end
 
   def edit
+  end
+
+  def widget
   end
 
   def create

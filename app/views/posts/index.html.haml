@@ -3,18 +3,43 @@
   = link_to 'New Post', new_post_path, class: "btn btn-success"
 %br
 .form-group.width-150
-  %label 
+  %label
     Sort created at:
   %select.form-control#sort-created-at
     %option{value: "DESC", selected: params[:sort] == "DESC"} DESC
     %option{value: "ASC", selected: params[:sort] == "ASC"} ASC
-%br
+
+= form_tag('/posts', method: :get) do |f|
+  .field
+    %input.form-control{type: "text", name: "keyword", placeholder: "id a post...", style: "width: 600px; float: left; margin-right: 10px;", value: params[:keyword]}
+    %button.btn.btn-primary filter
 
 .row.list-posts.js-appender
-  = render "list_posts", posts: @posts         
+  = render "list_posts", posts: @posts
 %br
 .text-center.hidden
   = will_paginate @posts, renderer: BootstrapPagination::Rails
 .image-loading
   = image_tag "/images/loading.gif"
+
+
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '218423298695708',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.12'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+.fb-customerchat{:page_id => "1820908848199838"}
+
+
 

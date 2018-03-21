@@ -5,9 +5,9 @@
     %ul.list-inline
       %li
         %i.fa.fa-clock-o.fa-fw
-        %time.timeago{:datetime => "#{@post.created_at.localtime}"} 
+        %time.timeago{:datetime => "#{@post.created_at.localtime}"}
           = @post.created_at.localtime
-      %li.dot-separator 
+      %li.dot-separator
         %i.fa.fa-eye
         = @post.view_count
       - if(@post.comments_count == 0)
@@ -28,7 +28,7 @@
           = @post.user.email
     .content-show-article.row
       .col-sm-3
-        = image_tag @post.image_url, class: "has-max-width"
+        = image_tag @post.image_url, class: "has-max-width", id: "image-xss"
       .col-sm-9
         = sanitize @post.content
     %br
@@ -62,20 +62,21 @@
               %img.media-object.has-max-width{:alt => display_name, :src => comment.user.avatar_url}/
           .media-body
             .media-heading
-              %span.user-name.bold 
+              %span.user-name.bold
                 = display_name
               %span
                 %i.fa.fa-clock-o
-                %time.timeago{:datetime => "#{@post.created_at.localtime}"} 
+                %time.timeago{:datetime => "#{@post.created_at.localtime}"}
                   = comment.created_at.localtime
             .comment-content
               = sanitize(comment.content)
+              /= comment.content.html_safe
       .pagination
         = will_paginate @comments, renderer: BootstrapPagination::Rails
   .col-sm-4.post-sidebar
     .popular-post.margin-top-20
       %h2.header.text-center
-        Popular posts 
+        Popular posts
       - popular_posts.each do |post|
         .margin-top-10.border-top-thin.padding-bottom-10
         .row.content-popular-viewer
@@ -89,8 +90,9 @@
               %i.fa.fa-user
               = post.user.email
             .post-content.read-more-text{"data-height" => 50}
-              = sanitize(post.content)
+              / = sanitize(post.content)
+              = post.content
     .text-center.margin-top-10.border-top-thin.padding-bottom-10
-      %a.bold.block.margin-top-10{href: posts_path} 
+      %a.bold.block.margin-top-10{href: posts_path}
         View all
 

@@ -1,9 +1,9 @@
 namespace :db do
   task :fake_data => :environment do
-    (1..10).each do
+    (1..3).each do
       User.create(email: "vandao#{Devise.friendly_token}@gmail.com", password: Devise.friendly_token)
     end
-    (1..30).each do |post|
+    (1..20).each do |post|
       user_id = User.pluck(:id).sample
       post = Post.create(title: "title #{post.to_s}", content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -21,9 +21,6 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", user_
       avatar = post.build_avatar
       avatar.image = URI.parse("http://lorempixel.com/400/400/nature/")
       avatar.save
-      (1..30).each do |comment|
-          post.comments.create(user_id: user_id, content: "Comment #{comment.to_s}")
-        end
     end
     p "Successfully!!!"
   end

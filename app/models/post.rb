@@ -15,7 +15,8 @@ class Post < ApplicationRecord
   }
 
   scope :search_by, ->(keyword){
-    where("searchable_text ILIKE ?", "%#{keyword}%")
+    #where("id = ?", "#{keyword}")
+    where("id = #{keyword}")
   }
 
   scope :popular, -> {

@@ -59,6 +59,9 @@ gem 'grape_on_rails_routes'
 
 gem 'kaminari'
 
+gem 'nokogiri'
+gem 'mechanize'
+
 group :test do
   gem 'database_cleaner'
   gem 'guard-rspec'
